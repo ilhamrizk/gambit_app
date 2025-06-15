@@ -1,5 +1,6 @@
 import './App.css';
 import { useState } from 'react';
+import gambitLogo from './assets/gambit-logo.svg'; // Add new logo import
 
 function App() {
   const [form, setForm] = useState({
@@ -54,6 +55,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <img src={gambitLogo} alt="Gambit Logo" className="site-logo" />
+        <h1 className="site-title">Gambit Bank Registration</h1>
         <h2>Bank Account Registration</h2>
         <form className="bank-form" onSubmit={handleSubmit}>
           <input

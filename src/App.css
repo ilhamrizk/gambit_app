@@ -114,3 +114,60 @@
   background: #21a1f3;
   color: #fff;
 }
+
+.site-logo {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 1rem;
+}
+
+.site-title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 600px) {
+  .App-header {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+  .bank-form,
+  .confirmation {
+    width: 100%;
+    min-width: unset;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+  .site-logo {
+    width: 48px;
+    height: 48px;
+  }
+  .site-title {
+    font-size: 1.3rem;
+  }
+  h2 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 900px) and (min-width: 601px) {
+  .App-header {
+    font-size: 1.2rem;
+    padding: 2rem;
+  }
+  .bank-form,
+  .confirmation {
+    width: 90%;
+    min-width: unset;
+    padding: 1.5rem;
+    font-size: 1.1rem;
+  }
+  .site-logo {
+    width: 56px;
+    height: 56px;
+  }
+  .site-title {
+    font-size: 1.6rem;
+  }
+}
