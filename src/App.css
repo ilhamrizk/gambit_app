@@ -8,72 +8,111 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background: linear-gradient(135deg, #00529b 0%, #0070c6 100%);
+  min-height: 60vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 2.5rem 2rem 2rem 2rem;
+  color: #fff;
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  box-shadow: 0 4px 32px rgba(0, 82, 155, 0.08);
+  position: relative;
+  width: 100vw;
+  max-width: 100vw;
+  box-sizing: border-box;
 }
 
-.App-link {
-  color: #61dafb;
+.site-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+  font-family: 'Segoe UI', 'Arial', sans-serif;
 }
 
-.heart {
-  color: #ff0000;
+.hero-section {
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem;
+  max-width: 480px;
 }
 
-.small {
-  font-size: 0.75rem;
+.hero-title {
+  font-size: 2.1rem;
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+  color: #fff;
+}
+
+.hero-desc {
+  font-size: 1.1rem;
+  color: #e3eaf3;
+  margin-bottom: 1.5rem;
 }
 
 .bank-form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  background: #222;
+  background: #fff;
+  color: #222;
   padding: 2rem;
   border-radius: 1rem;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
-  width: 320px;
+  box-shadow: 0 2px 16px rgba(0, 82, 155, 0.10);
+  width: 100%;
+  max-width: 400px;
   margin: 1rem auto;
+  align-items: stretch;
 }
 
 .bank-form input,
 .bank-form select {
-  padding: 0.75rem;
+  padding: 0.85rem;
   border-radius: 0.5rem;
-  border: none;
+  border: 1px solid #b3c6e0;
   font-size: 1rem;
+  background: #f7fafd;
+  color: #222;
+  transition: border 0.2s;
+}
+
+.bank-form input:focus,
+.bank-form select:focus {
+  border: 1.5px solid #0070c6;
+  outline: none;
 }
 
 .bank-form button {
-  background: #61dafb;
-  color: #222;
+  background: linear-gradient(90deg, #0070c6 0%, #00529b 100%);
+  color: #fff;
   border: none;
   border-radius: 0.5rem;
-  padding: 0.75rem;
-  font-size: 1rem;
+  padding: 0.85rem;
+  font-size: 1.1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 82, 155, 0.08);
 }
 
 .bank-form button:hover {
-  background: #21a1f3;
+  background: linear-gradient(90deg, #00529b 0%, #0070c6 100%);
+  box-shadow: 0 4px 16px rgba(0, 82, 155, 0.12);
 }
 
 .confirmation {
   margin-top: 2rem;
-  background: #333;
+  background: #f7fafd;
   padding: 1.5rem;
   border-radius: 1rem;
-  color: #fff;
-  width: 320px;
+  color: #00529b;
+  width: 100%;
+  max-width: 400px;
   margin-left: auto;
   margin-right: auto;
+  box-shadow: 0 2px 12px rgba(0, 82, 155, 0.08);
 }
 
 .popup-overlay {
@@ -103,34 +142,97 @@
   padding: 0.75rem 2rem;
   border: none;
   border-radius: 0.5rem;
-  background: #61dafb;
-  color: #222;
+  background: linear-gradient(90deg, #0070c6 0%, #00529b 100%);
+  color: #fff;
   font-size: 1rem;
   cursor: pointer;
   transition: background 0.2s;
 }
 
 .popup button:hover {
-  background: #21a1f3;
+  background: linear-gradient(90deg, #00529b 0%, #0070c6 100%);
   color: #fff;
 }
 
-.site-logo {
-  width: 64px;
-  height: 64px;
-  margin-bottom: 1rem;
+.navbar {
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0, 82, 155, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-.site-title {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-  letter-spacing: 1px;
+.navbar-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 2rem;
 }
 
-@media (max-width: 600px) {
+.navbar-logo {
+  width: 40px;
+  height: 40px;
+  margin-right: 1rem;
+}
+
+.navbar-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #00529b;
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  margin-right: 0.5rem;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li a {
+  color: #00529b;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.2s;
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+}
+
+.navbar-links li a:hover {
+  color: #0070c6;
+}
+
+.form-center-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.main-title-centered {
+  text-align: center;
+  width: 100%;
+  margin: 0 auto 0.5rem auto;
+  display: block;
+}
+
+.hero-centered {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 900px) {
   .App-header {
-    padding: 1rem;
-    font-size: 1rem;
+    padding: 1.5rem 1rem 1rem 1rem;
+    font-size: 1.1rem;
   }
   .bank-form,
   .confirmation {
@@ -140,34 +242,61 @@
     font-size: 1rem;
   }
   .site-logo {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
   }
   .site-title {
     font-size: 1.3rem;
   }
-  h2 {
-    font-size: 1.1rem;
+  .hero-title {
+    font-size: 1.3rem;
+  }
+  .navbar-content {
+    padding: 0.5rem 1rem;
+  }
+  .navbar-links {
+    gap: 1rem;
   }
 }
 
-@media (max-width: 900px) and (min-width: 601px) {
+@media (max-width: 600px) {
   .App-header {
-    font-size: 1.2rem;
-    padding: 2rem;
+    padding: 1rem 0.5rem 0.5rem 0.5rem;
+    font-size: 1rem;
   }
   .bank-form,
   .confirmation {
-    width: 90%;
+    width: 100%;
     min-width: unset;
-    padding: 1.5rem;
-    font-size: 1.1rem;
+    padding: 0.5rem;
+    font-size: 1rem;
   }
   .site-logo {
-    width: 56px;
-    height: 56px;
+    width: 36px;
+    height: 36px;
   }
   .site-title {
-    font-size: 1.6rem;
+    font-size: 1.1rem;
+  }
+  .hero-title {
+    font-size: 1.1rem;
+  }
+  .navbar-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.5rem 0.5rem;
+  }
+  .navbar-title {
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
+  .navbar-links {
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+  }
+  .form-center-wrapper {
+    padding: 0;
   }
 }

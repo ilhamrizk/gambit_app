@@ -1,6 +1,6 @@
 import './App.css';
 import { useState } from 'react';
-import gambitLogo from './assets/gambit-logo.svg'; // Add new logo import
+import gambitLogo from './assets/gambit-logo.svg'; // Adjust the path as necessary
 
 function App() {
   const [form, setForm] = useState({
@@ -13,105 +13,126 @@ function App() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
-  const [popupType, setPopupType] = useState('success'); // 'success' or 'failure'
+  const [popupType, setPopupType] = useState('success');
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate API call
+    
     try {
-      const response = await fetch('https://external-api.example.com/check-blacklist', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          idNumber: form.idNumber,
-          name: form.name,
-          email: form.email,
-          phone: form.phone,
-          address: form.address,
-          accountType: form.accountType,
-        }),
-      });
-      const data = await response.json();
-      if (data.blacklisted) {
+      if (!form.idNumber) {
+        console.error("ID Number is missing!");
         setPopupType('failure');
-      } else {
+        setShowPopup(true);
+        return;
+      }
+      
+      const url = `https://gambit-api-ilham-rizkys-projects.vercel.app/online_gambler_eq?id_value=${form.idNumber}`;
+      console.log("Fetching from URL:", url);
+      
+      const response = await fetch(url);
+      console.log("Response status:", response.status);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      console.log("Response data:", data);
+      
+      if (data.exists === false) {
         setPopupType('success');
         setSubmitted(true);
+      } else {
+        setPopupType('failure');
       }
-      setShowPopup(true);
     } catch (err) {
-      setPopupType('failure');
-      setShowPopup(true);
+      console.error("API call failed:", err);
+      setPopupType('failure'); // ini lebih logis
     }
+    
+    setShowPopup(true);
     setLoading(false);
   };
 
   return (
     <div className="App">
+      <nav className="navbar">
+        <div className="navbar-content">
+          <img src={gambitLogo} alt="Gambit Logo" className="navbar-logo" />
+          <span className="navbar-title">Gambit</span>
+          <ul className="navbar-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#promo">Promosi</a></li>
+            <li><a href="#news">Berita</a></li>
+            <li><a href="#about">Tentang</a></li>
+            <li><a href="#help">Bantuan</a></li>
+          </ul>
+        </div>
+      </nav>
       <header className="App-header">
-        <img src={gambitLogo} alt="Gambit Logo" className="site-logo" />
-        <h1 className="site-title">Gambit Bank Registration</h1>
-        <h2>Bank Account Registration</h2>
-        <form className="bank-form" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="idNumber"
-            placeholder="ID Number"
-            value={form.idNumber}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="text"
-            name="name"
-            placeholder="Full Name"
-            value={form.name}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={form.email}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="tel"
-            name="phone"
-            placeholder="Phone Number"
-            value={form.phone}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="text"
-            name="address"
-            placeholder="Address"
-            value={form.address}
-            onChange={handleChange}
-            required
-          />
-          <select
-            name="accountType"
-            value={form.accountType}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select Account Type</option>
-            <option value="savings">Savings</option>
-            <option value="current">Current</option>
-            <option value="business">Business</option>
-          </select>
-          <button type="submit" disabled={loading}>{loading ? 'Registering...' : 'Register'}</button>
-        </form>
+        <div className="site-title main-title-centered">Gambit Account Registration</div>
+        <div className="form-center-wrapper">
+          <form className="bank-form" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              name="idNumber"
+              placeholder="ID Number"
+              value={form.idNumber}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="text"
+              name="name"
+              placeholder="Full Name"
+              value={form.name}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={form.email}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Phone Number"
+              value={form.phone}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="text"
+              name="address"
+              placeholder="Address"
+              value={form.address}
+              onChange={handleChange}
+              required
+            />
+            <select
+              name="accountType"
+              value={form.accountType}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select Account Type</option>
+              <option value="savings">Savings</option>
+              <option value="current">Current</option>
+              <option value="business">Business</option>
+            </select>
+            <button type="submit" disabled={loading}>{loading ? 'Registering...' : 'Register'}</button>
+          </form>
+        </div>
         {submitted && (
           <div className="confirmation">
             <h3>Registration Successful!</h3>
