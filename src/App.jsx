@@ -150,13 +150,13 @@ function App() {
           <div className="popup" onClick={e => e.stopPropagation()}>
             {popupType === 'success' ? (
               <>
-                <h2>Application Success!</h2>
+                <h2 style={{ color: 'green', fontWeight: 'bold' }}>Application Success!</h2>
                 <p>Your bank account registration was successful.</p>
                 <button onClick={() => setShowPopup(false)}>Close</button>
               </>
             ) : (
               <>
-                <h2>Registration Failed</h2>
+                <h2 style={{ color: 'red', fontWeight: 'bold' }}>Registration Failed</h2>
                 <p>Sorry, your ID number is blacklisted. Registration cannot proceed.</p>
                 <button onClick={() => setShowPopup(false)}>Close</button>
               </>
